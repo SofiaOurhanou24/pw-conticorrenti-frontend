@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+
+<form [formGroup]="registerForm" (ngSubmit)="submit()" novalidate>
+  <div>
+    <h1>Registrati</h1>
+    <label for="email">Email</label>
+    <input id="email" type="email" formControlName="email" />
+    <div *ngIf="email?.touched && email?.invalid">
+      <small *ngIf="email?.errors?.['required']">Email obbligatoria.</small>
+      <small *ngIf="email?.errors?.['email']">Formato email non valido.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="password">Password</label>
+    <input id="password" type="password" formControlName="password" />
+    <div *ngIf="password?.touched && password?.invalid">
+      <small *ngIf="password?.errors?.['required']">Password obbligatoria.</small>
+      <small *ngIf="password?.errors?.['minlength']">Minimo 8 caratteri.</small>
+      <small *ngIf="password?.errors?.['pattern']">Almeno una maiuscola e un simbolo.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="confermaPassword">Conferma Password</label>
+    <input id="confermaPassword" type="password" formControlName="confermaPassword" />
+    <div *ngIf="confermaPassword?.touched && confermaPassword?.invalid">
+      <small *ngIf="confermaPassword?.errors?.['required']">Conferma obbligatoria.</small>
+      <small *ngIf="confermaPassword?.errors?.['mismatch']">Le password non coincidono.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="nomeTitolare">Nome Titolare</label>
+    <input id="nomeTitolare" type="text" formControlName="nomeTitolare" />
+    <div *ngIf="nomeTitolare?.touched && nomeTitolare?.invalid">
+      <small *ngIf="nomeTitolare?.errors?.['required']">Nome obbligatorio.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="cognomeTitolare">Cognome Titolare</label>
+    <input id="cognomeTitolare" type="text" formControlName="cognomeTitolare" />
+    <div *ngIf="cognomeTitolare?.touched && cognomeTitolare?.invalid">
+      <small *ngIf="cognomeTitolare?.errors?.['required']">Cognome obbligatorio.</small>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="registerForm.invalid">Registrati</button>
+</form>

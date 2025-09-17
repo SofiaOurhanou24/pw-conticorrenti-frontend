@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+<div class="login-container">
+  <h1>Login</h1>
+
+  <div class="timeout" *ngIf="timedOut">Hai impiegato troppo tempo a fare login. Riprova.</div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="submit()">
+    <div class="form-field">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" placeholder="esempio@email.com" />
+      <div class="error" *ngIf="email?.touched && email?.invalid">
+        <span *ngIf="email?.errors?.['required']">Email obbligatoria</span>
+        <span *ngIf="email?.errors?.['email']">Email non valida</span>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label for="password">Password</label>
+      <input id="password" type="password" formControlName="password" placeholder="Minimo 8 caratteri" />
+      <div class="error" *ngIf="password?.touched && password?.invalid">
+        <span *ngIf="password?.errors?.['required']">Password obbligatoria</span>
+        <span *ngIf="password?.errors?.['minlength']">Minimo 8 caratteri</span>
+      </div>
+    </div>
+
+    <button class="submit" type="submit" [disabled]="loginForm.invalid">Login</button>
+  </form>
+</div>
