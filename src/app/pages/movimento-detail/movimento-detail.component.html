@@ -1,0 +1,11 @@
+<div class="container" *ngIf="movimento$ | async as movimento">
+  <div class="row">
+    <div class="col card">
+      <div class="separator">
+        <h2>{{ movimento.id }}</h2>
+      </div>
+
+      <div>{{ movimento.descrizioneEstesa }}</div>
+    </div>
+  </div>
+</div>

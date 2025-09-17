@@ -1,6 +1,9 @@
-import { User } from './user.entity';
-
 export type Movimento = {
   id: string;
-  name: string;
+  contoCorrenteID: string;
+  data: Date;
+  importo: number;
+  saldo: number;
+  categoriaMovimentoID: string;
+  descrizioneEstesa: string;
 };

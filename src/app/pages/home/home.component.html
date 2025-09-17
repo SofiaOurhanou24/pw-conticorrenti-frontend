@@ -1,1 +1,25 @@
-<p>home works!</p>
+<div class="container">
+  <h2 class="mb-4">Benvenuto Mario Rossi</h2>
+
+  <div class="alert alert-info">
+    Il saldo attuale del conto è: <strong>€ 5.075,00</strong>
+  </div>
+
+  <h4 class="mt-5 mb-3">Ultimi 5 movimenti</h4>
+
+  <ng-container *ngIf="movimenti$ | async as movimenti">
+    <div class="grid" *ngIf="movimenti.length > 0">
+      <app-dettaglio
+        class="movimento-card"
+        *ngFor="let movimento of movimenti; trackBy: trackById"
+        [movimento]="movimento"
+        (click)="goToDetails(movimento.id)"
+      >
+      </app-dettaglio>
+    </div>
+
+    <div *ngIf="movimenti.length === 0" class="text-muted mt-4">
+      <p>Nessun movimento registrato</p>
+    </div>
+  </ng-container>
+</div>

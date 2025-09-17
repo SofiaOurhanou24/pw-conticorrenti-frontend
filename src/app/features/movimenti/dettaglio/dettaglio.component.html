@@ -1,1 +1,25 @@
-<p>dettaglio works!</p>
+<div
+  class="card"
+  (click)="onDetails()"
+  style="transition: all 0.3s ease; cursor: pointer"
+>
+  <div class="card-body">
+    <!-- Descrizione -->
+    <h5 class="card-title">
+      {{ movimento.descrizioneEstesa }}
+    </h5>
+
+    <!-- Data -->
+    <div>
+      <span>{{ movimento.data | date : "dd/MM/yyyy" }}</span>
+    </div>
+
+    <!-- Importo -->
+    <div>
+      {{ movimento.importo | currency : "EUR" : "symbol" : "1.2-2" }}
+    </div>
+
+    <!-- Bottone dettagli -->
+    <button class="btn btn-primary" (click)="onDetails()">Dettagli</button>
+  </div>
+</div>
