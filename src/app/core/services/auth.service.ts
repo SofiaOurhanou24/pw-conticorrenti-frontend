@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Router } from 'express';
+import { Router } from '@angular/router';
 import { BehaviorSubject, distinctUntilChanged, map, tap } from 'rxjs';
 import { JwtService } from './jwt.service';
 import { User } from '../entities/user.entity';

@@ -10,23 +10,18 @@ import { Router } from 'express';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  protected movimentiSrv = inject(MovimentiService);
-  protected router = inject(Router);
-
-  movimenti$ = this.movimentiSrv.movimenti$;
-
+  // protected movimentiSrv = inject(MovimentiService);
+  // protected router = inject(Router);
+  // movimenti$ = this.movimentiSrv.movimenti$;
   // goToAssignments(classroomId: string) {
   //   this.router.navigate([`/classrooms/${classroomId}/assignments`]);
   // }
-
   // trackById(_: any, classroom: Classroom) {
   //   return classroom.id;
   // }
-
   // onStudentChange(studentId: string, event: Event) {
   //   const checked = (event.target as HTMLInputElement).checked;
   //   const selected = this.selectedStudentsControl?.value || [];
-
   //   if (checked && !selected.includes(studentId)) {
   //     this.selectedStudentsControl?.setValue([...selected, studentId], {
   //       emitEvent: false,
@@ -38,7 +33,6 @@ export class HomeComponent {
   //     );
   //   }
   // }
-
   // addClass(modal: any) {
   //   const { name, selectedStudents } = this.addClassForm.value;
   //   this.classroomSrv.addClassSrv(name!.trim(), selectedStudents!);
