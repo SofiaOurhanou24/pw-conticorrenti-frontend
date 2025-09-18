@@ -8,6 +8,8 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -18,8 +20,10 @@ import { CommonModule } from '@angular/common';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
+  isSubmitting = false;
+  submitError: string | null = null;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router) {
     this.registerForm = this.formBuilder.group(
       {
         email: ['', [Validators.required, Validators.email]],
@@ -41,7 +45,21 @@ export class RegisterComponent {
 
   submit(): void {
     if (this.registerForm.valid) {
-      console.log('Register', this.registerForm.value);
+      this.submitError = null;
+      this.isSubmitting = true;
+      const { email, password, nomeTitolare, cognomeTitolare } = this.registerForm.value;
+      this.auth
+        .register(nomeTitolare, cognomeTitolare, email, password)
+        .subscribe({
+          next: () => {
+            this.isSubmitting = false;
+            this.router.navigate(['/login']);
+          },
+          error: (err) => {
+            this.isSubmitting = false;
+            this.submitError = err?.error?.message || 'Registrazione fallita. Riprova.';
+          },
+        });
     } else {
       this.registerForm.markAllAsTouched();
     }

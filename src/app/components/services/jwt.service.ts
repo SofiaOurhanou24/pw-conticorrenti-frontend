@@ -17,12 +17,7 @@ export class JwtService {
     if (!authToken) {
       return null;
     }
-    try {
-      return jwtDecode<T>(authToken);
-    } catch {
-      this.removeToken();
-      return null;
-    }
+    return jwtDecode<T>(authToken);
   }
 
   isTokenValid() {
@@ -31,13 +26,9 @@ export class JwtService {
     if (!authToken) {
       return false;
     }
-    try {
-      const decoded = jwtDecode(authToken) as { exp?: number };
-      return !decoded.exp || decoded.exp * 1000 > Date.now();
-    } catch {
-      this.removeToken();
-      return false;
-    }
+
+    const decoded = jwtDecode(authToken);
+    return !decoded.exp || decoded.exp * 1000 > Date.now();
   }
 
   getToken() {

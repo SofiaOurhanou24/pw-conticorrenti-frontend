@@ -60,5 +60,8 @@
     </div>
   </div>
 
-  <button type="submit" [disabled]="registerForm.invalid">Registrati</button>
+  <div *ngIf="submitError" style="color: red; margin-top: 8px;">{{ submitError }}</div>
+  <button type="submit" [disabled]="registerForm.invalid || isSubmitting">
+    {{ isSubmitting ? 'Registrazione in corso…' : 'Registrati' }}
+  </button>
 </form>
