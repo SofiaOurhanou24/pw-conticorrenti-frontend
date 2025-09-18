@@ -33,29 +33,23 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.http
-      .post<any>('/api/login', { username: email, password })
-      .pipe(
-        tap((res) => this.jwtSrv.setToken(res.token)),
-        tap((res) => this._currentUser$.next(res.user)),
-        map((res) => res.user)
-      );
+    return this.http.post<any>('/api/login', { email, password }).pipe(
+      tap((res) => this.jwtSrv.setToken(res.token)),
+      tap((res) => this._currentUser$.next(res.user)),
+      map((res) => res.user)
+    );
   }
 
   register(
     firstName: string,
     lastName: string,
-    picture: string,
-    role: string,
     email: string,
     password: string
   ) {
     return this.http.post<any>('/api/register', {
       firstName,
       lastName,
-      picture,
-      role,
-      username: email,
+      email,
       password,
     });
   }
