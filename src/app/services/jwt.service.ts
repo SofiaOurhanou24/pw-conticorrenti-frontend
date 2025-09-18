@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -10,25 +11,25 @@ export class JwtService {
     return !!this.getToken();
   }
 
-  // getPayload<T>() {
-  //   const authToken = this.getToken();
+  getPayload<T>() {
+    const authToken = this.getToken();
 
-  //   if (!authToken) {
-  //     return null;
-  //   }
-  //   return jwtDecode<T>(authToken);
-  // }
+    if (!authToken) {
+      return null;
+    }
+    return jwtDecode<T>(authToken);
+  }
 
-  // isTokenValid() {
-  //   const authToken = this.getToken();
+  isTokenValid() {
+    const authToken = this.getToken();
 
-  //   if (!authToken) {
-  //     return false;
-  //   }
+    if (!authToken) {
+      return false;
+    }
 
-  //   const decoded = jwtDecode(authToken);
-  //   return !decoded.exp || decoded.exp * 1000 > Date.now();
-  // }
+    const decoded = jwtDecode(authToken);
+    return !decoded.exp || decoded.exp * 1000 > Date.now();
+  }
 
   getToken() {
     return localStorage.getItem(this.storageKey);

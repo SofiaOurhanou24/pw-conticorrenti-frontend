@@ -23,13 +23,13 @@ export class AuthService {
   );
 
   constructor() {
-    // const tokenValid = this.jwtSrv.isTokenValid();
-    // if (!tokenValid) {
-    //   this.logout();
-    // } else {
-    //   const user = this.jwtSrv.getPayload<User>();
-    //   this._currentUser$.next(user);
-    // }
+    const tokenValid = this.jwtSrv.isTokenValid();
+    if (!tokenValid) {
+      this.logout();
+    } else {
+      const user = this.jwtSrv.getPayload<User>();
+      this._currentUser$.next(user);
+    }
   }
 
   login(email: string, password: string) {
