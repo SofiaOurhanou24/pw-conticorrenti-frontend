@@ -45,10 +45,10 @@ export class AuthService {
     password: string
   ) {
     return this.http.post<any>('/api/register', {
-      NomeTitolare: firstName,
-      CognomeTitolare: lastName,
-      Email: email,
-      Password: password,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
     });
   }
 
