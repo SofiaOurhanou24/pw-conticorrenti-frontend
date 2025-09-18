@@ -1,14 +1,20 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+  AbstractControl,
+  ValidationErrors,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, NavbarComponent],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
   registerForm: FormGroup;
@@ -17,14 +23,17 @@ export class RegisterComponent {
     this.registerForm = this.formBuilder.group(
       {
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(/^(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{8,}$/)
-        ]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.pattern(/^(?=.*[A-Z])(?=.*[^A-Za-z0-9]).{8,}$/),
+          ],
+        ],
         confermaPassword: ['', [Validators.required]],
         nomeTitolare: ['', [Validators.required]],
-        cognomeTitolare: ['', [Validators.required]]
+        cognomeTitolare: ['', [Validators.required]],
       },
       { validators: [this.passwordsMatchValidator] }
     );
@@ -38,13 +47,25 @@ export class RegisterComponent {
     }
   }
 
-  get email(): AbstractControl | null { return this.registerForm.get('email'); }
-  get password(): AbstractControl | null { return this.registerForm.get('password'); }
-  get confermaPassword(): AbstractControl | null { return this.registerForm.get('confermaPassword'); }
-  get nomeTitolare(): AbstractControl | null { return this.registerForm.get('nomeTitolare'); }
-  get cognomeTitolare(): AbstractControl | null { return this.registerForm.get('cognomeTitolare'); }
+  get email(): AbstractControl | null {
+    return this.registerForm.get('email');
+  }
+  get password(): AbstractControl | null {
+    return this.registerForm.get('password');
+  }
+  get confermaPassword(): AbstractControl | null {
+    return this.registerForm.get('confermaPassword');
+  }
+  get nomeTitolare(): AbstractControl | null {
+    return this.registerForm.get('nomeTitolare');
+  }
+  get cognomeTitolare(): AbstractControl | null {
+    return this.registerForm.get('cognomeTitolare');
+  }
 
-  private passwordsMatchValidator = (group: AbstractControl): ValidationErrors | null => {
+  private passwordsMatchValidator = (
+    group: AbstractControl
+  ): ValidationErrors | null => {
     const password = group.get('password')?.value;
     const confirm = group.get('confermaPassword')?.value;
     if (password && confirm && password !== confirm) {

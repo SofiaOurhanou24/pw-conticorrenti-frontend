@@ -1,14 +1,14 @@
 import { Component, inject } from '@angular/core';
-import { MovimentiService } from '../../core/services/movimenti.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Movimento } from '../../core/entities/movimento.entity';
-import { DettaglioComponent } from '../../features/movimenti/dettaglio/dettaglio.component';
+import { MovimentiService } from '../../services/movimenti.service';
+import { Movimento } from '../../entities/movimento.entity';
+import { DetailsComponent } from '../../components/details/details.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, DettaglioComponent],
+  imports: [CommonModule, DetailsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })

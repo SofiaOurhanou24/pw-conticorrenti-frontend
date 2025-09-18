@@ -1,14 +1,19 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, NavbarComponent],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
@@ -18,7 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]]
+      password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
@@ -31,8 +36,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
-  get email(): AbstractControl | null { return this.loginForm.get('email'); }
-  get password(): AbstractControl | null { return this.loginForm.get('password'); }
+  get email(): AbstractControl | null {
+    return this.loginForm.get('email');
+  }
+  get password(): AbstractControl | null {
+    return this.loginForm.get('password');
+  }
 
   ngOnInit(): void {
     this.startTimeout();
@@ -57,4 +66,3 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 }
-

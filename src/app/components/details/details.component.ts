@@ -1,15 +1,14 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Movimento } from '../../../core/entities/movimento.entity';
+import { Movimento } from '../../entities/movimento.entity';
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-dettaglio',
-  standalone: true,
+  selector: 'app-details',
   imports: [CommonModule, CurrencyPipe, DatePipe],
-  templateUrl: './dettaglio.component.html',
-  styleUrl: './dettaglio.component.css',
+  templateUrl: './details.component.html',
+  styleUrl: './details.component.css',
 })
-export class DettaglioComponent {
+export class DetailsComponent {
   @Input()
   movimento!: Movimento;
 

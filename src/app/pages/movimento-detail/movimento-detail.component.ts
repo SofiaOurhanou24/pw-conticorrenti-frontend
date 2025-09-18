@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MovimentiService } from '../../core/services/movimenti.service';
-import { AuthService } from '../../core/services/auth.service';
 import { map, Observable } from 'rxjs';
-import { Movimento } from '../../core/entities/movimento.entity';
 import { CommonModule } from '@angular/common';
+import { MovimentiService } from '../../services/movimenti.service';
+import { AuthService } from '../../services/auth.service';
+import { Movimento } from '../../entities/movimento.entity';
 
 @Component({
   selector: 'app-movimento-detail',

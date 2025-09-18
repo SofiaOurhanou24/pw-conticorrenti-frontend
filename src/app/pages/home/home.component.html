@@ -9,13 +9,13 @@
 
   <ng-container *ngIf="movimenti$ | async as movimenti">
     <div class="grid" *ngIf="movimenti.length > 0">
-      <app-dettaglio
+      <app-details
         class="movimento-card"
         *ngFor="let movimento of movimenti; trackBy: trackById"
         [movimento]="movimento"
         (click)="goToDetails(movimento.id)"
       >
-      </app-dettaglio>
+      </app-details>
     </div>
 
     <div *ngIf="movimenti.length === 0" class="text-muted mt-4">
